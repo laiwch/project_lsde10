@@ -4,7 +4,7 @@
 		module="geturls_2.11"
 		revision="1.0"
 		status="integration"
-		publication="20181006220832"
+		publication="20181008213641"
 	>
 		<description>
 		GetURLs
@@ -35,6 +35,5 @@
 		<dependency org="org.scala-lang" name="scala-compiler" rev="2.11.0" conf="scala-tool->default,optional(default)"/>
 		<dependency org="org.scala-lang" name="scala-library" rev="2.11.0" conf="scala-tool->default,optional(default);compile->default(compile)"/>
 		<dependency org="org.apache.spark" name="spark-core_2.11" rev="2.1.1" conf="compile->default(compile)"/>
-		<dependency org="org.gdal" name="gdal" rev="2.3.2" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

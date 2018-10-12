@@ -4,7 +4,7 @@
 		module="geturls-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20180929162413"
+		publication="20181008213552"
 		e:scalaVersion="2.10" e:sbtVersion="0.13"
 	>
 		<description>
