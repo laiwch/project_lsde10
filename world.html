@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ECharts map Demo</title>
+
+</head>
+<script src="echarts.js"></script>
+<script src="world.js"></script>
+<body>
+
+	<div id="map-wrap" style="height: 500px;">
+		<!-- 这里以后是地图 -->
+    <script type="text/javascript">
+	var mapChart = echarts.init(document.getElementById('map-wrap'));
+	var geoCoordMap = {
+    "19026":[16.13,48.52],
+	"19124":[15.53,51.42],
+	"19125":[15.16,50.17],
+	"19126":[14.40,58.52],
+	"19127":[14.7,47.27],
+	"19223":[14.59,53.6],
+	"19224":[14.2,51.42],
+	"19225":[13.43,50.17],
+	"19226":[13.8,48.52],
+	"19227":[12.34,47.27],
+	"19228":[12,2,46.2],
+	"19322":[14.8,54.31],
+	"19323":[13.26,53.6],
+	"19324":[12.47,51.42],
+	"19325":[12.10,50.17],
+	"19326":[11.35,48.52],
+	"19327":[11.1,47.27],
+	"19422":[12.35,54.32],
+	"19423":[11.54,53.6],
+	"19424":[11.15,51.42],
+	"19425":[10.37,50.17],
+	"19426":[10.2,48.52],
+	"19427":[9.28,47.27],
+	"19428":[8.56,46.2],
+	"19520":[12.33,57.19],
+	"19521":[11.46,55.55],
+	"19522":[11.2,54.31],
+	"19523":[10.21,53.6],
+	"19524":[9.42,51.42],
+	"19525":[9.05,50.17],
+	"19526":[8.29,48.52],
+	"19527":[7.56,47.27],
+	"19528":[7.23,46.2],
+	"19619":[11.5,58.42],
+	"19620":[11.0,57.19],
+	"19621":[10.14,55.55],
+	"19622":[9.30,54.31],
+	"19623":[8.48,53.6],
+	"19624":[8.9,51.42],
+	"19625":[7.32,50.17],
+	"19626":[6.57,48.52],
+	"19719":[10.17,58.42],
+	"19720":[9.27,57.19],
+	"19721":[8.41,55.55],
+	"19722":[7.57,54.31],
+	"19723":[7.16,53.6],
+	"19724":[6.36,51.42],
+	"19725":[5.59,50.17],
+	"19726":[5.24,48.52],
+	"19819":[8.45,58.42],
+	"19820":[7.55,57.19],
+	"19821":[7.80,55.55],
+	"19822":[6.24,54.31],
+	"19823":[5.43,53.6],
+	"19824":[5.40,51.42],
+	"19825":[4.27,50.17],
+	"19923":[4.10,53.6],
+	"19924":[3.31,51.42],
+	"19925":[2.54,50.17],
+	"20023":[2.37,53.6],
+	"20024":[1.58,51.42],
+	"20025":[1.21,50.17],
+	"20123":[1.5,53.6],
+	"20124":[0.26,51.42],
+	"20125":[-0.19,50.17],
+	"20223":[-0.46,53.6],
+	"20224":[-1.11,51.42],
+	"20225":[-1.7,50.17],
+	"20226":[-2.3,50.17],
+	"20324":[-2.66,51.42],
+	"20325":[-3.2,50.17],
+	"20425":[-4.5,50.17],
+};
+
+var convertData = function (data) {
+    var res = [];
+    for (var i = 0; i < data.length; i++) {
+        var geoCoord = geoCoordMap[data[i].name];
+        if (geoCoord) {
+            res.push({
+                name: data[i].name,
+                value: geoCoord.concat(data[i].value)
+            });
+        }
+    }
+    return res;
+};
+	
+	var option = {
+	 tooltip : {
+        trigger: 'item',
+         formatter: function (params) {
+            return params.name + ' : ' + params.value[2];
+        }
+    },
+	geo: {
+          map: 'world',
+          label: {
+            emphasis: {
+                show: false
+            	}
+        	},
+			center:[14.35, 52.20],
+			zoom:10,
+			scaleLimit:{min:1,max:100}, 
+			 roam: true,
+           itemStyle: {					// 定义样式
+            normal: {					// 普通状态下的样式
+                areaColor: '#323c48',
+                borderColor: '#111'
+            },
+            emphasis: {					// 高亮状态下的样式
+                areaColor: '#2a333d'
+            }
+        }
+    },
+	
+	series: [
+        {
+            name: 'ABC',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+
+			
+            data: convertData([
+                {name: "19026", value: 9},
+				{name: "19124", value: 9},
+				{name: "19125", value: 9},
+				{name: "19126", value: 9},
+				{name: "19127", value: 9},
+				{name: "19223", value: 9},
+				{name: "19224", value: 9},
+				{name: "19225", value: 9},
+				{name: "19226", value: 9},
+				{name: "19227", value: 9},
+				{name: "19228", value: 9},
+				{name: "19322", value: 9},
+				{name: "19323", value: 9},
+				{name: "19324", value: 9},
+				{name: "19325", value: 9},
+				{name: "19326", value: 9},
+				{name: "19327", value: 9},
+				{name: "19422", value: 9},
+				{name: "19423", value: 9},
+				{name: "19424", value: 9},
+				{name: "19425", value: 9},
+				{name: "19426", value: 9},
+				{name: "19427", value: 9},
+				{name: "19428", value: 9},
+				{name: "19520", value: 9},
+				{name: "19521", value: 9},
+				{name: "19522", value: 9},
+				{name: "19523", value: 9},
+				{name: "19524", value: 9},
+				{name: "19525", value: 9},
+				{name: "19526", value: 9},
+				{name: "19527", value: 9},
+				{name: "19528", value: 9},
+				{name: "19619", value: 9},
+				{name: "19620", value: 9},
+				{name: "19621", value: 9},
+				{name: "19622", value: 9},
+				{name: "19623", value: 9},
+				{name: "19624", value: 9},
+				{name: "19625", value: 9},
+				{name: "19626", value: 9},
+				{name: "19719", value: 9},
+				{name: "19720", value: 9},
+				{name: "19721", value: 9},
+				{name: "19722", value: 9},
+				{name: "19723", value: 9},
+				{name: "19724", value: 9},
+				{name: "19725", value: 9},
+				{name: "19726", value: 9},
+				{name: "19819", value: 9},
+				{name: "19820", value: 9},
+				{name: "19821", value: 9},
+				{name: "19822", value: 9},
+				{name: "19823", value: 9},
+				{name: "19824", value: 9},
+				{name: "19825", value: 9},
+				{name: "19923", value: 9},
+				{name: "19924", value: 9},
+				{name: "19925", value: 9},
+				{name: "20023", value: 9},
+				{name: "20024", value: 9},
+				{name: "20025", value: 9},
+				{name: "20123", value: 9},
+				{name: "20124", value: 9},
+				{name: "20125", value: 9},
+				{name: "20223", value: 9},
+				{name: "20224", value: 9},
+				{name: "20225", value: 9},
+				{name: "20226", value: 9},
+				{name: "20324", value: 9},
+				{name: "20325", value: 9},
+				{name: "20425", value: 9},
+            ]),
+            symbolSize: 15,
+            label: {
+                normal: {
+                    show: false
+                },
+                emphasis: {
+                    show: false
+                }
+            },
+            itemStyle: {
+                emphasis: {
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }
+            }
+        }
+    ]
+	
+	}
+	
+	mapChart.setOption(option);
+	</script>
+
+	</div>
+	
+</body>
+
+</html>
